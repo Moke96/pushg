@@ -24,10 +24,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#" onclick="loadDoc('pushG');">pushG <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" onclick="loadDoc('aram');">All Random All Drink <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -51,6 +51,7 @@
         </form>
     </div>
 </nav>
+<div id="main_content" class="container">
 <h1>Hello, world!</h1>
 <input id="player_name" placeholder="Player Name">
 <input id="platform" placeholder="Platform">
@@ -62,6 +63,8 @@
 </ul>
 
 <script src="../js/main.js"></script>
+</div>
+<script type="text/javascript" src="../js/request.js"></script>
 <script src="../js/jquery-3.4.1.slim.min.js"></script>
 <script src="../js/popper.min.js"></script>
 <script src="../js/bootstrap-material-design.js"></script>
