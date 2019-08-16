@@ -1,4 +1,15 @@
+@font-face{
+    font-family: pubgFont;
+    src: url("./fonts/HeadlinerNo.45 DEMO.ttf");
+}
 body{
     background-color: #4e555b;
     color: white;
+}
+.navbar-brand{
+    font-family: pubgFont, serif;
+    color: #856404 !important;
+}
+img path {
+    fill: red !important;
 }
