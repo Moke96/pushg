@@ -6,12 +6,17 @@ const header = {
     "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
     "X-Riot-Token": api_key,
 }
-function getAccID(summonerName, regionToken){
-    requestURL = "https://" + regionToken + accIDURL + summonerName;
+async function getAccID(){
+    requestURL = "https://" + "euw1" + accIDURL + "OnlyGlutax";
     let parameter= {
         headers: header,
         method:"GET"
     };
-    fetch(requestURL,parameter)
+    await fetch(requestURL,parameter)
         .then(data=>data.json())
+        .then(res => {
+            console.log(res);
+            result = res;
+        });
+
 }
