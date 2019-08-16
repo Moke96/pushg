@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+<div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-6">
+<form>
+    <div class="form-group">
+
+        <label class="input-group-text" for="serverSelect">Server: </label>
+        <select class="custom-select" id="serverSelect">
+            <option selected>Choose...</option>
+            <option value="EUW" selected>EU West</option>
+            <option value="EUN">EU North</option>
+            <option value="NA">North America</option>
+        </select>
+
+        <label class="input-group-text" for="playernameInput">Playername: </label>
+        <input type="text" id="playernameInput" class="form-control" name="playername"><br>
+
+        <label class="input-group-text" for="difficultySelect">Difficulty:  </label>
+        <div class="btn-group btn-group-lg" id="difficultySelect" role="group">
+            <button type="button" class="btn btn-secondary">Easy</button>
+            <button type="button" class="btn btn-secondary">Middle</button>
+            <button type="button" class="btn btn-secondary">Hard</button>
+            <button type="button" class="btn btn-secondary">Party</button>
+        </div>
+
+        <label class="input-group-text" for="allPlayers">Calculate for only yourself or all Players in your Team:  </label>
+        <div class="btn-group" id="allPlayers" role="group">
+            <button type="button" class="btn btn-secondary">Only Me</button>
+            <button type="button" class="btn btn-secondary">Whole Team</button>
+        </div>
+        <br>
+        <button type="button" class="btn btn-outline-dark">Submit</button>
+    </div>
+</form>
+    </div>
+    <div class="col-3">
+    </div>
+</div>
+</body>
+</html>
