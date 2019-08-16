@@ -5,9 +5,18 @@
 </head>
 <body>
 <div class="row">
-    <div class="col">
+    <div class="col-3">
+    </div>
+    <div class="col-6">
 <form>
     <div class="form-group">
+
+        <div class="btn-group btn-group-lg" id="queueType" role="group">
+            <button type="button" class="btn btn-secondary">Solo</button>
+            <button type="button" class="btn btn-secondary">Squad</button>
+        </div>
+
+
         <label class="input-group-text" for="platformSelect">Platform: </label>
         <select class="custom-select" id="platformSelect">
             <option selected>Choose...</option>
@@ -16,18 +25,22 @@
             <option value="xbox">XBOX</option>
         </select>
 
-<label class="input-group-text" for="playernameInput">Playername: </label>
-<input type="text" id="playernameInput" class="form-control" name="playername"><br>
+        <label class="input-group-text" for="playernameInput">Playername: </label>
+        <input type="text" id="playernameInput" class="form-control" name="playername"><br>
+
         <label class="input-group-text" for="difficultySelect">Difficulty:  </label>
         <div class="btn-group btn-group-lg" id="difficultySelect" role="group">
             <button type="button" class="btn btn-secondary">Easy</button>
             <button type="button" class="btn btn-secondary">Middle</button>
             <button type="button" class="btn btn-secondary">Hard</button>
+            <button type="button" class="btn btn-secondary">Party</button>
         </div>
         <br>
         <button type="button" class="btn btn-outline-dark">Submit</button>
     </div>
 </form>
+    </div>
+    <div class="col-3">
     </div>
 </div>
 </body>
