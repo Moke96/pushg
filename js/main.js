@@ -32,6 +32,12 @@ async function getPlayerJson() {
 async function getLatestMatchFromPlayer() {
     const matches_url = "matches/";
     let result = null;
+    let parameters = {
+        headers: {
+            "Accept": "application/vnd.api+json"
+        },
+        method:"GET"
+    };
     await getPlayerJson().then(async playerObject => {
         if (playerObject === undefined || playerObject === null) {
             throw new Error('Kein Spieler Object gefunden!')
@@ -39,7 +45,7 @@ async function getLatestMatchFromPlayer() {
         let latestMatchID = playerObject.data[0].relationships.matches.data[0].id;
         playerID = playerObject.data[0].id;
         const latest_Match_url = url + platform + matches_url + latestMatchID;
-        await fetch(latest_Match_url, parameter)
+        await fetch(latest_Match_url, parameters)
             .then(data => data.json())
             .then(res => {
                 console.log(res);
@@ -68,6 +74,7 @@ async function getLatestMatchResults() {
 }
 
 async function writeList() {
+    $('#player_stats').html("");
     let list = "";
     await getLatestMatchResults().then(stats => {
         for (s in stats) {

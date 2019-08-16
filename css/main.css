@@ -13,3 +13,15 @@ body{
 img path {
     fill: red !important;
 }
+label{
+    color: white !important;
+}
+input{
+    color: white !important;
+}
+select{
+    color: white !important;
+}
+option{
+    color: #4e555b;
+}
