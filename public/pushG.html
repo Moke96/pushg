@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-6">
+        <form action="/pubg" method="post">
+            <div class="form-group">
+                <div class="btn-group btn-group-lg" id="queueType" role="group">
+                    <button type="button" class="btn btn-secondary">Solo</button>
+                    <button type="button" class="btn btn-secondary">Squad</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="input-group-text" for="platform">Platform: </label>
+                <select class="custom-select" id="platform" name="platform">
+                    <option selected>Choose...</option>
+                    <option value="steam" selected>Steam</option>
+                    <option value="psn">PS4</option>
+                    <option value="xbox">XBOX</option>
+                </select>
+            </div>
+            <div class="form-group bmd-form-group">
+                <!--<label for="player_name" class="bmd-label-floating">Playername: </label>-->
+                <input placeholder="Playername" type="text" id="player_name" class="form-control" name="playername"
+                       required>
+            </div>
+            <div class="form-group">
+                <label class="input-group-text" for="difficultySelect">Difficulty: </label>
+                <div class="btn-group btn-group-lg" id="difficultySelect" role="group">
+                    <button type="button" class="btn btn-secondary">Easy</button>
+                    <button type="button" class="btn btn-secondary">Middle</button>
+                    <button type="button" class="btn btn-secondary">Hard</button>
+                    <button type="button" class="btn btn-secondary">Party</button>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-outline-warning btn-raised">Submit</button>
+            </div>
+
+        </form>
+    </div>
+    <div class="col-3">
+    </div>
+    <ul class="list-group" id="player_stats">
+
+    </ul>
+</div>

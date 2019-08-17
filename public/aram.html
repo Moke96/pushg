@@ -8,11 +8,11 @@
     <div class="col-3">
     </div>
     <div class="col-6">
-<form>
+<form action="/aram" method="post">
     <div class="form-group">
 
         <label class="input-group-text" for="region">Server: </label>
-        <select class="custom-select" id="region">
+        <select class="custom-select" id="region" name="region">
             <option selected>Choose...</option>
             <option value="EUW1" selected>EU West</option>
             <option value="EUN1">EU North</option>
@@ -36,7 +36,7 @@
             <button type="button" class="btn btn-secondary">Whole Team</button>
         </div>
         <br>
-        <button type="button" class="btn btn-outline-dark" onclick="getAccID()">Submit</button>
+        <button type="submit" class="btn btn-outline-dark" onclick="getAccID()">Submit</button>
     </div>
 </form>
     </div>

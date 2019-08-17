@@ -10,15 +10,17 @@ const Leagueheader = {
 async function getAccID(){
     let region = $('#region').val();
     let name = $('#summoner_name').val();
-    requestURL = "https://" + region + accIDURL + name + api_key_url;
+    let requestURL = "https://" + region + accIDURL + name + api_key_url;
     let parameter= {
         //headers: header,
         method:"GET"
     };
+    let result={};
     await fetch(requestURL,parameter)
         .then(data=>data.json())
         .then(res => {
             console.log(res);
             result = res;
         });
+    return result;
 }
