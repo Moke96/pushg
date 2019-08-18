@@ -38,7 +38,7 @@ app.post('/aram', function (req, res) {
     }
 
     getAccID();
-    res.render('index',{stat: result});
+    res.render('aram',{stat: result});
     console.log(req.body.playername);
 });
 app.post('/pubg', function (req, res) {
@@ -123,7 +123,7 @@ app.post('/pubg', function (req, res) {
             for (s in stats) {
                 list += "  <li class=\"list-group-item\">" + s + ": " + stats[s] + "</li>"
             }
-            res.render('index', {stat: list})
+            res.render('pubg', {stat: list})
         })
     }
     writeList();

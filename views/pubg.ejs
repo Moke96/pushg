@@ -14,7 +14,7 @@
 </head>
 <body>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="#">
         <img src="../assets/icons/pushup.svg" width="50" height="30" class="d-inline-block align-top" alt="" id="logo">
         PushG
     </a>
@@ -55,40 +55,55 @@
     </div>
 </nav>
 <div id="main_content" class="container">
-    <!--<h1>Hello, world!</h1>
-    <form action="/pubg" method="post">
-        <input id="player_name" name="playername" placeholder="Player Name">
-        <input id="platform" name="platform" placeholder="Platform">
-
-        <button type="submit" class="btn btn-outline-danger">Test</button>
-
-    </form>-->
-    <br>
     <div class="row">
-        <div class="container hover-container">
-            <img src="./assets/cover/aram.jpg" class="image">
-            <div class="middle">
-                <button class="btn" onclick="loadDoc('aram')">
-                    <img src="./assets/cover/lolicon.png">
-                </button>
-            </div>
+        <div class="col-3">
         </div>
-        <div class="container hover-container">
-            <img src="./assets/cover/pubg.jpg" class="image">
-            <div class="middle">
-                <button class="btn" onclick="loadDoc('pushg')">
-                    <img src="./assets/cover/pubgicon.png">
-                </button>
-            </div>
-        </div>
-    </div>
-    <% if(stat !== null){ %>
-        <ul class="list-group" id="player_stats">
-            <%= stat %>
-        </ul>
-    <% }
-    %>
+        <div class="col-6">
+            <form action="/pubg" method="post">
+                <div class="form-group">
+                    <div class="btn-group btn-group-lg" id="queueType" role="group">
+                        <button type="button" class="btn btn-secondary">Solo</button>
+                        <button type="button" class="btn btn-secondary">Squad</button>
+                    </div>
+                </div>
 
+                <div class="form-group">
+                    <label class="input-group-text" for="platform">Platform: </label>
+                    <select class="custom-select" id="platform" name="platform">
+                        <option selected>Choose...</option>
+                        <option value="steam" selected>Steam</option>
+                        <option value="psn">PS4</option>
+                        <option value="xbox">XBOX</option>
+                    </select>
+                </div>
+                <div class="form-group bmd-form-group">
+                    <!--<label for="player_name" class="bmd-label-floating">Playername: </label>-->
+                    <input placeholder="Playername" type="text" id="player_name" class="form-control" name="playername"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label class="input-group-text" for="difficultySelect">Difficulty: </label>
+                    <div class="btn-group btn-group-lg" id="difficultySelect" role="group">
+                        <button type="button" class="btn btn-secondary">Easy</button>
+                        <button type="button" class="btn btn-secondary">Middle</button>
+                        <button type="button" class="btn btn-secondary">Hard</button>
+                        <button type="button" class="btn btn-secondary">Party</button>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-outline-warning btn-raised">Submit</button>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-3">
+        </div>
+        <% if(stat !== null){ %>
+            <ul class="list-group" id="player_stats">
+                <%- stat %>
+            </ul>
+        <% }
+        %>
+    </div>
 </div>
 
 <script src="js/jquery-3.4.1.slim.min.js"></script>
