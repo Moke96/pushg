@@ -20,7 +20,6 @@ app.post('/pubg', function (req, res) {
     let player_name = req.body.playername;
 
     pubg.writeList(platform, player_name)
-        .then(response => response.)
         .then(data => res.render('pubg', {stat: data}))
         .catch(err => console.log(err));
 });
