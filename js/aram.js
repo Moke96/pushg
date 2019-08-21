@@ -8,6 +8,8 @@ const api_key = "RGAPI-1a3db87c-72d8-4d73-b02d-13e261a73675";
 const api_key_url = "api_key=" + api_key;
 
 let list = '';
+let region = '';
+let player_name = '';
 
 const Leagueheader = {
     "Origin": null,
@@ -17,7 +19,7 @@ const Leagueheader = {
 
 let gloabalresult = {};
 
-async function getAccID(region, player_name) {
+async function getAccID() {
     baseURL = "https://" + region + ".api.riotgames.com/lol/";
     let result = {};
 
@@ -36,10 +38,10 @@ async function getAccID(region, player_name) {
     return result.accountId;
 }
 
-async function getLastMatch(region, player_name) {
+async function getLastMatch() {
     let result = {};
     let lastMatch = {};
-    await getAccID(region, player_name).then(async id => {
+    await getAccID().then(async id => {
         let queueURL = "?queue=450"; //nur ARAM
         let requestURL = baseURL + matchesByAccountIDURL + id + queueURL + "&" + api_key_url;
         let parameter = {
@@ -55,9 +57,9 @@ async function getLastMatch(region, player_name) {
     });
     return lastMatch;
 }
-async function getMatchStats(region, player_name) {
+async function getMatchStats() {
     let result = {};
-    await  getLastMatch(region, player_name).then(async match => {
+    await  getLastMatch().then(async match => {
         let matchID = match.gameId;
         let requestURL = baseURL + matchByMatchIDURL + matchID + "?" + api_key_url;
         let parameter = {
@@ -74,9 +76,9 @@ async function getMatchStats(region, player_name) {
     })
     return result;
 }
-async function getLastMatchStatsFromPlayer(region, player_name){
+async function getLastMatchStatsFromPlayer(){
     let result = {};
-    await getMatchStats(region, player_name).then(async match => {
+    await getMatchStats().then(async match => {
         let players = match.participantIdentities;
         for (i=0;i<players.length;i++){
             if (players[i].player !== undefined && players[i].player.summonerName===player_name){
@@ -90,8 +92,10 @@ async function getLastMatchStatsFromPlayer(region, player_name){
 }
 
 
-exports.writeList = async function writeList(region, player_name) {
-    await getLastMatchStatsFromPlayer(region, player_name).then(async stats => {
+exports.writeList = async function writeList(reg, name) {
+    region = reg;
+    player_name = name;
+    await getLastMatchStatsFromPlayer().then(async stats => {
         list = "";
         for (s in stats) {
             list += "  <li class=\"list-group-item\">" + s + ": " + stats[s] + "</li>"

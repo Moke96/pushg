@@ -10,6 +10,7 @@ let parameter = {
     method: "GET"
 };
 let platform = "";
+let player_name = "";
 let id = "";
 let playerID = "";
 const data = {};
@@ -17,7 +18,7 @@ const data = {};
 /**
  * Holt sich das PlayerObject anhand des eingegebenen Spielernames und Platform
  */
-async function getPlayerJson(platform, player_name) {
+async function getPlayerJson() {
     let player_stats_url = url + platform + "players?filter[playerNames]=" + player_name;
     let result = {};
     await fetch(player_stats_url, parameter)
@@ -29,7 +30,7 @@ async function getPlayerJson(platform, player_name) {
     return result;
 }
 
-async function getLatestMatchFromPlayer(platform, player_name) {
+async function getLatestMatchFromPlayer() {
     const matches_url = "matches/";
     let result = null;
     let parameters = {
@@ -38,7 +39,7 @@ async function getLatestMatchFromPlayer(platform, player_name) {
         },
         method: "GET"
     };
-    await getPlayerJson(platform, player_name).then(async playerObject => {
+    await getPlayerJson().then(async playerObject => {
         if (playerObject === undefined || playerObject === null) {
             throw new Error('Kein Spieler Object gefunden!')
         }
@@ -56,9 +57,9 @@ async function getLatestMatchFromPlayer(platform, player_name) {
     return result;
 }
 
-async function getLatestMatchResults(platform, player_name) {
+async function getLatestMatchResults() {
     let playerStats = {};
-    await getLatestMatchFromPlayer(platform, player_name).then(matchObject => {
+    await getLatestMatchFromPlayer().then(matchObject => {
         if (matchObject === undefined || matchObject === null) {
             throw new Error('Kein Match Object gefunden!')
         }
@@ -75,10 +76,12 @@ async function getLatestMatchResults(platform, player_name) {
 
 
 
-exports.writeList = async function writeList(platform, player_name) {
+exports.writeList = async function writeList(plat, name) {
+    platform = plat;
+    player_name = name;
     let list = "";
-    console.log(platform, player_name);
-    await getLatestMatchResults(platform, player_name).then(stats => {
+    //console.log(platform, player_name);
+    await getLatestMatchResults().then(stats => {
         for (s in stats) {
             list += "  <li class=\"list-group-item\">" + s + ": " + stats[s] + "</li>"
         }

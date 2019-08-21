@@ -23,7 +23,7 @@ async function getPlayerJson() {
     await fetch(player_stats_url, parameter)
         .then(data => data.json())
         .then(res => {
-            console.log(res);
+            //console.log(res);
             result = res;
         });
     return result;
