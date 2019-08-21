@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const fetch = require('node-fetch');
 const pubg = require('./js/pubg');
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -15,13 +14,13 @@ app.post('/aram', function (req, res) {
     aram.getAccID()
 });
 
-app.post('/pubg', function (req, res) {
+app.post('/pubg', async function (req, res) {
     let platform = req.body.platform + '/';
     let player_name = req.body.playername;
 
-    pubg.writeList(platform, player_name)
-        .then(data => res.render('pubg', {stat: data}))
-        .catch(err => console.log(err));
+    let data = await pubg.writeList(platform, player_name);
+    //console.log(data);
+    res.render('pubg', {stat: data});
 });
 
 app.use(express.static('public'));

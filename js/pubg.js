@@ -23,7 +23,7 @@ async function getPlayerJson(platform, player_name) {
     await fetch(player_stats_url, parameter)
         .then(data => data.json())
         .then(res => {
-            console.log(res);
+            //console.log(res);
             result = res;
         });
     return result;
@@ -48,7 +48,7 @@ async function getLatestMatchFromPlayer(platform, player_name) {
         await fetch(latest_Match_url, parameters)
             .then(data => data.json())
             .then(res => {
-                console.log(res);
+                //console.log(res);
                 result = res;
             })
             .then(error => console.log(error))
@@ -82,6 +82,7 @@ exports.writeList = async function writeList(platform, player_name) {
         for (s in stats) {
             list += "  <li class=\"list-group-item\">" + s + ": " + stats[s] + "</li>"
         }
-        return list;
-    })
+        //console.error(list);
+    }).catch((error) => console.error(error));
+    return list;
 };
