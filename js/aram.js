@@ -4,7 +4,7 @@ let baseURL = '';
 const accIDURL = "summoner/v4/summoners/by-name/";
 const matchesByAccountIDURL = "match/v4/matchlists/by-account/";
 const matchByMatchIDURL = "match/v4/matches/";
-const api_key = "RGAPI-1a3db87c-72d8-4d73-b02d-13e261a73675";
+const api_key = "RGAPI-682f96d3-b7ff-415e-a89a-d2b315e889ad";
 const api_key_url = "api_key=" + api_key;
 
 let list = '';
@@ -50,30 +50,41 @@ async function getLastMatch() {
         await fetch(requestURL, parameter)
             .then(data => data.json())
             .then(res => {
+                if (res.status !== undefined){
+                    if (res.status.status_code === 403){
+                        console.log("API Key veraltet!");
+                    }else {
+                        console.log(res.status_code + ": " + res.status.message);
+                    }
+                    lastMatch = null;
+                }else{
+                    lastMatch = res.matches[0];
+                }
                 //console.log(res);
-                lastMatch = res.matches[0];
             });
-
     });
     return lastMatch;
 }
 async function getMatchStats() {
     let result = {};
     await  getLastMatch().then(async match => {
-        let matchID = match.gameId;
-        let requestURL = baseURL + matchByMatchIDURL + matchID + "?" + api_key_url;
-        let parameter = {
-            method: "GET"
-        };
+        if (match !== null){
+            let matchID = match.gameId;
+            let requestURL = baseURL + matchByMatchIDURL + matchID + "?" + api_key_url;
+            let parameter = {
+                method: "GET"
+            };
 
-        await fetch(requestURL,parameter)
-            .then(data => data.json())
-            .then(res => {
-                //console.log(res);
-                result = res;
-            });
-
-    })
+            await fetch(requestURL,parameter)
+                .then(data => data.json())
+                .then(res => {
+                    //console.log(res);
+                    result = res;
+                });
+        }else {
+            result = null;
+        }
+    });
     return result;
 }
 async function getLastMatchStatsFromPlayer(){

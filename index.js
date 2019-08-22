@@ -10,6 +10,14 @@ app.get('/', function (req, res) {
     res.render('index', {stat: null});
 });
 
+app.get('/aram', async function (req,res){
+   res.render('aram',{stat:null});
+});
+
+app.get('/pubg', async function (req,res){
+    res.render('pubg',{stat:null});
+});
+
 app.post('/aram', async function (req, res) {
     let region = req.body.region;
     let player_name = req.body.playername;
