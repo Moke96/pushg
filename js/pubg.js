@@ -79,6 +79,7 @@ async function getLatestMatchResults() {
 exports.writeList = async function writeList(plat, name) {
     platform = plat;
     player_name = name;
+
     let list = "";
     //console.log(platform, player_name);
     await getLatestMatchResults().then(stats => {

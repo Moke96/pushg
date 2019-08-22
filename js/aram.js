@@ -11,23 +11,15 @@ let list = '';
 let region = '';
 let player_name = '';
 
-const Leagueheader = {
-    "Origin": null,
-    "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-    "X-Riot-Token": api_key,
+let parameter = {
+    method: "GET"
 };
-
-let gloabalresult = {};
 
 async function getAccID() {
     baseURL = "https://" + region + ".api.riotgames.com/lol/";
     let result = {};
 
     let requestURL = baseURL + accIDURL + player_name + "?" + api_key_url;
-    let parameter = {
-        //headers: header,
-        method: "GET"
-    };
 
     await fetch(requestURL, parameter)
         .then(data => data.json())
@@ -39,14 +31,10 @@ async function getAccID() {
 }
 
 async function getLastMatch() {
-    let result = {};
     let lastMatch = {};
     await getAccID().then(async id => {
         let queueURL = "?queue=450"; //nur ARAM
         let requestURL = baseURL + matchesByAccountIDURL + id + queueURL + "&" + api_key_url;
-        let parameter = {
-            method: "GET"
-        };
         await fetch(requestURL, parameter)
             .then(data => data.json())
             .then(res => {
@@ -71,9 +59,6 @@ async function getMatchStats() {
         if (match !== null){
             let matchID = match.gameId;
             let requestURL = baseURL + matchByMatchIDURL + matchID + "?" + api_key_url;
-            let parameter = {
-                method: "GET"
-            };
 
             await fetch(requestURL,parameter)
                 .then(data => data.json())
@@ -109,7 +94,7 @@ exports.writeList = async function writeList(reg, name) {
     await getLastMatchStatsFromPlayer().then(async stats => {
         list = "";
         for (s in stats) {
-            list += "  <li class=\"list-group-item\">" + s + ": " + stats[s] + "</li>"
+            list += "<li class=\"list-group-item\">" + s + ":" + stats[s] + "</li>"
         }
     });
     return list;
