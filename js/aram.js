@@ -4,7 +4,7 @@ let baseURL = '';
 const accIDURL = "summoner/v4/summoners/by-name/";
 const matchesByAccountIDURL = "match/v4/matchlists/by-account/";
 const matchByMatchIDURL = "match/v4/matches/";
-const api_key = "RGAPI-682f96d3-b7ff-415e-a89a-d2b315e889ad";
+const api_key = "RGAPI-84ee6537-0248-42de-85e7-a7fb23bdca69";
 const api_key_url = "api_key=" + api_key;
 
 let list = '';
@@ -78,11 +78,11 @@ async function getLastMatchStatsFromPlayer(){
         let players = match.participantIdentities;
         for (i=0;i<players.length;i++){
             if (players[i].player !== undefined && players[i].player.summonerName===player_name){
-                var id = players[i].participantId
+                var id = players[i].participantId;
                 break;
             }
         }
-        result = match.participants[id-1].stats;
+        result = match.participants[id-1];
     });
     return result;
 }
@@ -91,10 +91,13 @@ async function getLastMatchStatsFromPlayer(){
 exports.writeList = async function writeList(reg, name) {
     region = reg;
     player_name = name;
-    await getLastMatchStatsFromPlayer().then(async stats => {
+    await getLastMatchStatsFromPlayer().then(async participant => {
         list = "";
-        for (s in stats) {
-            list += "<li class=\"list-group-item\">" + s + ":" + stats[s] + "</li>"
+        for (s in participant) {
+            list += "<li class=\"list-group-item\">" + s + ":" + participant[s] + "</li>"
+        }
+        for (s in participant.stats) {
+            list += "<li class=\"list-group-item\">" + s + ":" + participant.stats[s] + "</li>"
         }
     });
     return list;
