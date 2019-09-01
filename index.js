@@ -11,7 +11,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/aram', async function (req,res){
-   res.render('aram',{stat:null});
+   res.render('aram',{stats:null});
 });
 
 app.get('/pubg', async function (req,res){
@@ -23,7 +23,7 @@ app.post('/aram', async function (req, res) {
     let player_name = req.body.playername;
 
     let data = await aram.writeList(region, player_name);
-    res.render('aram', {stat: data})
+    res.render('aram', {stats: data})
 });
 
 app.post('/pubg', async function (req, res) {

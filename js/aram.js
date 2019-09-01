@@ -7,7 +7,6 @@ const matchByMatchIDURL = "match/v4/matches/";
 const api_key = "RGAPI-84ee6537-0248-42de-85e7-a7fb23bdca69";
 const api_key_url = "api_key=" + api_key;
 
-let list = '';
 let region = '';
 let player_name = '';
 
@@ -89,16 +88,17 @@ async function getLastMatchStatsFromPlayer(){
 
 
 exports.writeList = async function writeList(reg, name) {
+    let result = '';
     region = reg;
     player_name = name;
     await getLastMatchStatsFromPlayer().then(async participant => {
-        list = "";
-        for (s in participant) {
+        result = participant;
+        /**for (s in participant) {
             list += "<li class=\"list-group-item\">" + s + ":" + participant[s] + "</li>"
         }
         for (s in participant.stats) {
             list += "<li class=\"list-group-item\">" + s + ":" + participant.stats[s] + "</li>"
-        }
+        } **/
     });
-    return list;
+    return result;
 };

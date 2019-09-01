@@ -60,15 +60,16 @@
         <div class="col-3">
         </div>
     </div>
-    <% if(stat !== null){ %>
+    <% if(stats !== null){ %>
         <ul class="list-group" id="player_stats">
-            <%- stat %>
         </ul>
-    <% }
+    <% getChampionSquare(stats);
+    }
     %>
 
 </div>
 
+<script src="js/lolImages.js"></script>
 <script src="js/jquery-3.4.1.slim.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap-material-design.js"></script>
