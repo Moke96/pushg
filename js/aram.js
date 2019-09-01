@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const pic = require('./lolImages');
 
 let baseURL = '';
 const accIDURL = "summoner/v4/summoners/by-name/";
@@ -95,14 +96,17 @@ exports.writeList = async function writeList(reg, name) {
     let result = '';
     region = reg;
     player_name = name;
+    let list="";
     await getLastMatchStatsFromPlayer().then(async participant => {
         result = participant;
-        /**for (s in participant) {
+        const avatarHTML = await pic.getChampionSquare(result);
+        list+="<li class=\"list-group-item\">"+avatarHTML+"</li>";
+        for (s in participant) {
             list += "<li class=\"list-group-item\">" + s + ":" + participant[s] + "</li>"
         }
         for (s in participant.stats) {
             list += "<li class=\"list-group-item\">" + s + ":" + participant.stats[s] + "</li>"
-        } **/
+        }
     });
-    return result;
+    return list;
 };
