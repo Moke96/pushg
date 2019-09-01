@@ -4,7 +4,7 @@ let baseURL = '';
 const accIDURL = "summoner/v4/summoners/by-name/";
 const matchesByAccountIDURL = "match/v4/matchlists/by-account/";
 const matchByMatchIDURL = "match/v4/matches/";
-const api_key = "RGAPI-84ee6537-0248-42de-85e7-a7fb23bdca69";
+const api_key = "RGAPI-62795466-deb6-4561-b705-3bc09d433ee8";
 const api_key_url = "api_key=" + api_key;
 
 let list = '';
@@ -75,14 +75,18 @@ async function getMatchStats() {
 async function getLastMatchStatsFromPlayer(){
     let result = {};
     await getMatchStats().then(async match => {
-        let players = match.participantIdentities;
-        for (i=0;i<players.length;i++){
-            if (players[i].player !== undefined && players[i].player.summonerName===player_name){
-                var id = players[i].participantId;
-                break;
+        if(match !== null) {
+            let players = match.participantIdentities;
+            for (i=0;i<players.length;i++){
+                if (players[i].player !== undefined && players[i].player.summonerName===player_name){
+                    var id = players[i].participantId;
+                    break;
+                }
             }
+            result = match.participants[id-1];
+        } else {
+            result = null;
         }
-        result = match.participants[id-1];
     });
     return result;
 }
