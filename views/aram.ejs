@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/bootstrap-material-design.css"/>
     <link rel="stylesheet" href="css/main.css"/>
 
+    <script src="js/lolImages.js"></script>
+
     <title>PushG</title>
 </head>
 <body>
@@ -63,13 +65,13 @@
     <% if(stats !== null){ %>
         <ul class="list-group" id="player_stats">
         </ul>
-    <% getChampionSquare(stats);
+    <script> getChampionSquare(<%stats%>); </script>
+    <%
     }
     %>
 
 </div>
 
-<script src="js/lolImages.js"></script>
 <script src="js/jquery-3.4.1.slim.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap-material-design.js"></script>

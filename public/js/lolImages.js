@@ -1,5 +1,3 @@
-let node = document.getElementById('player_stats');
-
 let championsURL = "http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json ";
 let championSquareURL = "http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/";
 
@@ -21,12 +19,15 @@ async function getChampionSquare(stats) {
         .then(res => {
             champions = res;
         });
-    for(i=0; i<champions.data.length();i++) {
+    for(i=0; i<champions.data.length;i++) {
         if(champions.data[i].key === stats.championID) {
-            championName = champions.data[i].id;
+            championName = champions.data[i].id.toString();
         }
     }
-    console.log(champions.data);
 
-    node.html('<img src=' + championSquareURL + 'Aatrox' + '.png');
+    result = ('<img src=' + championSquareURL + championName + '.png');
+
+    console.log(championName);
+    console.log(result);
+    return result;
 }
